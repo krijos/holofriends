@@ -115,7 +115,21 @@
 						HoloFriends_AddFriend();
 					</OnClick>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self,ADD_FRIEND, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_ADDFRIEND, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( ADD_FRIEND ) then
+								GameTooltip:SetText(ADD_FRIEND, 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_ADDFRIEND, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_ADDFRIEND, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(ADD_FRIEND, 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -135,7 +149,21 @@
 						HoloFriends_RemoveFriend();
 					</OnClick>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self,REMOVE_FRIEND, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_REMOVEFRIEND, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( REMOVE_FRIEND ) then
+								GameTooltip:SetText(REMOVE_FRIEND, 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_REMOVEFRIEND, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_REMOVEFRIEND, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(REMOVE_FRIEND, 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -169,7 +197,21 @@
 						HoloFriends_List_Update();
 					</OnClick>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self, HOLOFRIENDS_TOOLTIPTURNINFOTITLE, 1.0, 1.0, 1.0, HOLOFRIENDS_TOOLTIPTURNINFOTEXT, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( HOLOFRIENDS_TOOLTIPTURNINFOTITLE ) then
+								GameTooltip:SetText(HOLOFRIENDS_TOOLTIPTURNINFOTITLE, 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(HOLOFRIENDS_TOOLTIPTURNINFOTEXT, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(HOLOFRIENDS_TOOLTIPTURNINFOTEXT, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(HOLOFRIENDS_TOOLTIPTURNINFOTITLE, 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();

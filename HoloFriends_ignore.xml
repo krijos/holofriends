@@ -32,7 +32,21 @@
 						HoloIgnore_AddIgnore();
 					</OnClick>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self,IGNORE_PLAYER, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_IGNOREPLAYER, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( IGNORE_PLAYER ) then
+								GameTooltip:SetText(IGNORE_PLAYER, 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_IGNOREPLAYER, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_IGNOREPLAYER, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(IGNORE_PLAYER, 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -52,7 +66,21 @@
 						HoloIgnore_RemoveIgnore();
 					</OnClick>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self,REMOVE_IGNORE, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_REMOVEFRIEND, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( REMOVE_IGNORE ) then
+								GameTooltip:SetText(REMOVE_IGNORE, 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_REMOVEFRIEND, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_REMOVEFRIEND, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(REMOVE_IGNORE, 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();

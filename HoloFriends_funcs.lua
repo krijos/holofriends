@@ -146,11 +146,11 @@ function HoloFriendsFuncs_CheckComment(playerIndex, onlineIndex, note)
 		local name = list[playerIndex].name;
 		local numNotifyFriends;
 		if ( RealID ) then numNotifyFriends = BNGetNumFriends();
-		              else numNotifyFriends = GetNumFriends(); end
+		              else numNotifyFriends = C_FriendList.GetNumFriends(); end
 		for inum = 1, numNotifyFriends do
 			local iname;
 			if ( RealID ) then
-				_, iname = BNGetFriendInfo(inum);
+				_, iname = C_BattleNet.GetFriendAccountInfo(inum);
 			else
 				iname = GetFriendInfo(inum);
 			end
@@ -162,7 +162,7 @@ function HoloFriendsFuncs_CheckComment(playerIndex, onlineIndex, note)
 	if ( not onlineIndex ) then return; end
 
 	if ( not note ) then
-		if ( RealID ) then _, _, _, _, _, _, _, _, _, _, _, _, note = BNGetFriendInfo(onlineIndex);
+		if ( RealID ) then _, _, _, _, _, _, _, _, _, _, _, _, note = C_BattleNet.GetFriendAccountInfo(onlineIndex);
 		              else _, _, _, _, _, _, note = GetFriendInfo(onlineIndex); end
 	end
 
@@ -177,7 +177,7 @@ function HoloFriendsFuncs_CheckComment(playerIndex, onlineIndex, note)
 		local comment = list[playerIndex].comment;
 		if ( not comment ) then comment = ""; end
 		if ( RealID ) then
-			local pID = BNGetFriendInfo(onlineIndex);
+			local pID = C_BattleNet.GetFriendAccountInfo(onlineIndex);
 			BNSetFriendNote(pID, comment);
 		else
 			HoloFriends_EventFlags.SetFriendNotes = true;
@@ -280,7 +280,7 @@ function HoloFriendsFuncs_IsFriendAtOnlineList(friend)
 	if ( not friend ) then return; end
 
 	-- check WoW friends list
-	for idx = 1, GetNumFriends() do
+	for idx = 1, C_FriendList.GetNumFriends() do
 		local name = GetFriendInfo(idx);
 		if ( name == friend ) then return 1; end
 	end
@@ -288,7 +288,7 @@ function HoloFriendsFuncs_IsFriendAtOnlineList(friend)
 	-- check Bnet friends list
 	-- (Problem: the name is no guaranteed return value)
 	for idx = 1, BNGetNumFriends() do
-		local _, name = BNGetFriendInfo(idx);
+		local _, name = C_BattleNet.GetFriendAccountInfo(idx);
 		if ( name ) then
 			if ( name == friend ) then return 2; end
 		end
@@ -392,7 +392,7 @@ function HoloFriendsFuncs_RemoveFromServerList(flags)
 				local numFriends = BNGetNumFriends();
 				local pID;
 				for inum = 1, numFriends do
-					local ID, iname = BNGetFriendInfo(inum);
+					local ID, iname = C_BattleNet.GetFriendAccountInfo(inum);
 					if ( iname == name ) then pID = ID; end
 				end
 				if ( not pID ) then return false; end
