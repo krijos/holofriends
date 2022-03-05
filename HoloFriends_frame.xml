@@ -532,9 +532,37 @@
 					</OnClick>
 					<OnEnter>
 						if ( self:GetParent():GetName() == "HoloFriendsFrame" ) then
-							GameTooltip_AddNewbieTip(self, HOLOFRIENDS_SHAREFRIENDSWINDOWTITLE, 1.0, 1.0, 1.0, HOLOFRIENDS_TOOLTIPSHAREBUTTON, 1);
+							if ( SHOW_NEWBIE_TIPS == "1" ) then
+								GameTooltip_SetDefaultAnchor(GameTooltip, self);
+								if ( HOLOFRIENDS_SHAREFRIENDSWINDOWTITLE ) then
+									GameTooltip:SetText(HOLOFRIENDS_SHAREFRIENDSWINDOWTITLE, 1.0, 1.0, 1.0);
+									GameTooltip:AddLine(HOLOFRIENDS_TOOLTIPSHAREBUTTON, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+								else
+									GameTooltip:SetText(HOLOFRIENDS_TOOLTIPSHAREBUTTON, 1.0, 1.0, 1.0, 1, 1);
+								end
+								GameTooltip:Show();
+							else
+								if ( not 1 ) then
+									GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+									GameTooltip:SetText(HOLOFRIENDS_SHAREFRIENDSWINDOWTITLE, 1.0, 1.0, 1.0);
+								end
+							end
 						else
-							GameTooltip_AddNewbieTip(self, HOLOFRIENDS_SHAREIGNOREWINDOWTITLE, 1.0, 1.0, 1.0, HOLOFRIENDS_TOOLTIPSHAREBUTTON, 1);
+							if ( SHOW_NEWBIE_TIPS == "1" ) then
+								GameTooltip_SetDefaultAnchor(GameTooltip, self);
+								if ( HOLOFRIENDS_SHAREIGNOREWINDOWTITLE ) then
+									GameTooltip:SetText(HOLOFRIENDS_SHAREIGNOREWINDOWTITLE, 1.0, 1.0, 1.0);
+									GameTooltip:AddLine(HOLOFRIENDS_TOOLTIPSHAREBUTTON, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+								else
+									GameTooltip:SetText(HOLOFRIENDS_TOOLTIPSHAREBUTTON, 1.0, 1.0, 1.0, 1, 1);
+								end
+								GameTooltip:Show();
+							else
+								if ( not 1 ) then
+									GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+									GameTooltip:SetText(HOLOFRIENDS_SHAREIGNOREWINDOWTITLE, 1.0, 1.0, 1.0);
+								end
+							end
 						end
 					</OnEnter>
 					<OnLeave>
@@ -555,7 +583,21 @@
 						self:Disable();
 					</OnLoad>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self, MicroButtonTooltipText(FRIENDS, "TOGGLEFRIENDSTAB"), 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_FRIENDSTAB, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( MicroButtonTooltipText(FRIENDS, "TOGGLEFRIENDSTAB") ) then
+								GameTooltip:SetText(MicroButtonTooltipText(FRIENDS, "TOGGLEFRIENDSTAB"), 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_FRIENDSTAB, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_FRIENDSTAB, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(MicroButtonTooltipText(FRIENDS, "TOGGLEFRIENDSTAB"), 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave function="GameTooltip_Hide"/>
 				</Scripts>
@@ -566,7 +608,21 @@
 				</Anchor></Anchors>
 				<Scripts>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self, MicroButtonTooltipText(WHO, "TOGGLEWHOTAB"), 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_WHOTAB, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( MicroButtonTooltipText(WHO, "TOGGLEWHOTAB") ) then
+								GameTooltip:SetText(MicroButtonTooltipText(WHO, "TOGGLEWHOTAB"), 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_WHOTAB, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_WHOTAB, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(MicroButtonTooltipText(WHO, "TOGGLEWHOTAB"), 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave function="GameTooltip_Hide"/>
 				</Scripts>
@@ -577,7 +633,21 @@
 				</Anchor></Anchors>
 				<Scripts>
 					<OnEnter>
-						GameTooltip_AddNewbieTip(self, RAID, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_RAID, 1);
+						if ( SHOW_NEWBIE_TIPS == "1" ) then
+							GameTooltip_SetDefaultAnchor(GameTooltip, self);
+							if ( RAID ) then
+								GameTooltip:SetText(RAID, 1.0, 1.0, 1.0);
+								GameTooltip:AddLine(NEWBIE_TOOLTIP_RAID, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+							else
+								GameTooltip:SetText(NEWBIE_TOOLTIP_RAID, 1.0, 1.0, 1.0, 1, 1);
+							end
+							GameTooltip:Show();
+						else
+							if ( not 1 ) then
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+								GameTooltip:SetText(RAID, 1.0, 1.0, 1.0);
+							end
+						end
 					</OnEnter>
 					<OnLeave function="GameTooltip_Hide"/>
 				</Scripts>

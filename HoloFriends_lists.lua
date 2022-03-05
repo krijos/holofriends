@@ -276,7 +276,7 @@ function HoloFriendsLists_SetComment(list, index, comment, FL, share)
 		if ( list[index].realid ) then
 			local numNotifyFriends = BNGetNumFriends();
 			for inum = 1, numNotifyFriends do
-				local bnetid, bname, btag = BNGetFriendInfo(inum);
+				local bnetid, bname, btag = C_BattleNet.GetFriendAccountInfo(inum);
 				if ( (btag == list[index].btag) or (bnetid == list[index].bnetid) or (bname == list[index].bname) ) then
 					BNSetFriendNote(bnetid, comment);
 					return;
@@ -284,7 +284,7 @@ function HoloFriendsLists_SetComment(list, index, comment, FL, share)
 			end
 		else
 			local name = list[index].name;
-			local numNotifyFriends = GetNumFriends();
+			local numNotifyFriends = C_FriendList.GetNumFriends();
 			for inum = 1, numNotifyFriends do
 				local iname = GetFriendInfo(inum);
 				if ( iname == name ) then

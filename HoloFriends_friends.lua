@@ -420,7 +420,7 @@ function HoloFriends_AddFriend(player, note, group)
 			return;
 		else
 			HFF_InsertNewEntry(name, group, nil, nil, nil, nil, msg);
-			if ( (GetNumFriends() < HF_Max_Server_Friends) and (name ~= UnitName("player")) ) then
+			if ( (C_FriendList.GetNumFriends() < HF_Max_Server_Friends) and (name ~= UnitName("player")) ) then
 				local index = HoloFriendsLists_ContainsPlayer(HF_list, name);
 				HoloFriendsLists_SetNotify(HF_list, index, HF_ONLINE, HF_UNQUIET, "RunUpdate", HoloFriends_EventFlags);
 			else
@@ -734,7 +734,7 @@ function HoloFriends_CheckBox_OnClick(self)
 	-- RealID entries are always online checked, don't change
 	if ( HF_list[index].realid ) then return; end
 
-	if ( self:GetChecked() and GetNumFriends() == HF_Max_Server_Friends ) then
+	if ( self:GetChecked() and C_FriendList.GetNumFriends() == HF_Max_Server_Friends ) then
 		self:SetChecked(nil);
 		HoloFriendsFuncs_SystemMessage(HF_Limit_Alert);
 	else
@@ -832,7 +832,7 @@ function HoloFriends_CheckLocalList()
 					-- RealID friends are only added to the friends list of a char if they are online
 					HF_list[index].notify = nil;
 				else
-					local notify = (GetNumFriends() < HF_Max_Server_Friends);
+					local notify = (C_FriendList.GetNumFriends() < HF_Max_Server_Friends);
 					HoloFriendsLists_SetNotify(HF_list, index, notify, HF_UNQUIET, "RunLocal", HoloFriends_EventFlags);
 					return;
 				end
@@ -909,7 +909,7 @@ function HoloFriends_CheckServerList()
 	HoloFriends_EventFlags.ListUpdateStartTime = time();
 
 	local NotFaction = HoloFriendsFuncs_IsCharDataAvailable(HOLOFRIENDS_LIST, UnitName("player"));
-	local numNotifyFriends = GetNumFriends();
+	local numNotifyFriends = C_FriendList.GetNumFriends();
 	local numRealIDFriends = BNGetNumFriends();
 
 	-- init the notify flag of all online friends (notify = 3 is friend check in progress)
@@ -945,7 +945,7 @@ function HoloFriends_CheckServerList()
 		local class = UNKNOWN;
 		if ( idx <= numRealIDFriends ) then
 			local isBattleTag, tID, lastOn, isAFK, isDND, isRIDFriend, msgTime, canSoR;
-			bnetid, bname, btag, isBattleTag, tname, tID, client, connected, lastOn, isAFK, isDND, bcast, note, isRIDFriend, msgTime, canSoR = BNGetFriendInfo(index);
+			bnetid, bname, btag, isBattleTag, tname, tID, client, connected, lastOn, isAFK, isDND, bcast, note, isRIDFriend, msgTime, canSoR = C_BattleNet.GetFriendAccountInfo(index);
 			if ( bname or btag ) then
 				-- check if we have this RealID friend already in our list
 				name = HoloFriendsLists_FindPresenceIDName(HF_list, btag, bnetid);
@@ -1287,7 +1287,7 @@ function HoloFriends_UpdateFriendsList()
 	HoloFriends_chat("HoloFriends_UpdateFriendsList start", HF_DEBUG_OUTPUT);
 
 	-- get some counter
-	local notifyCounter = GetNumFriends() + BNGetNumFriends();
+	local notifyCounter = C_FriendList.GetNumFriends() + BNGetNumFriends();
 	local onlineCounter = 0;
 	local sumCounter = 0;
 	local groupIndex;
